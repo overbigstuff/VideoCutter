@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">VideoCutter</string>
+
+    <string name="error">Ошибка</string>
+    <string name="trim_error">Произошла ошибка во время нарезки видео</string>
+    <string name="trim_success">Видео нарезано успешно</string>
+    <string name="video_is_not_recorded">Видео не записано</string>
+</resources>
