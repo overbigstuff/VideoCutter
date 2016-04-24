@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 
 import com.github.hiteshsondhi88.libffmpeg.ExecuteBinaryResponseHandler;
 import com.shirokov.videocutter.R;
+import com.shirokov.videocutter.util.AppUtils;
 import com.shirokov.videocutter.util.DialogUtils;
 import com.shirokov.videocutter.util.FFmpegUtils;
 import com.shirokov.videocutter.util.FragmentUtils;
@@ -66,6 +67,13 @@ public class RecTrimFragment extends Fragment {
                 dispatchTakeVideoIntent();
             }
         });
+
+        view.findViewById(R.id.log_last_video).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AppUtils.logLastVideo();
+            }
+        });
     }
 
     private void dispatchTakeVideoIntent() {
@@ -101,20 +109,11 @@ public class RecTrimFragment extends Fragment {
             public void onFinish() {
                 isTriming = false;
                 mProgressDialog.dismiss();
-                logLastVideo();
+                AppUtils.logLastVideo();
             }
         });
     }
 
-    private void logLastVideo() {
-        File dir = new File(FFmpegUtils.getVideoCutterOutputDir());
-        if (dir.exists()) {
-            File[] list = dir.listFiles();
-            if (list != null && list.length > 0) {
-                Log.d(TAG, "" + list[list.length - 1].getName());
-            }
-        }
-    }
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {

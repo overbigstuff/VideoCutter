@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import com.shirokov.videocutter.R;
 import com.shirokov.videocutter.adapter.VideoPreviewAdapter;
 import com.shirokov.videocutter.model.VideoPreview;
+import com.shirokov.videocutter.util.AppUtils;
 import com.shirokov.videocutter.util.FFmpegUtils;
 
 import java.io.File;
@@ -38,6 +39,12 @@ public class VideoListFragment extends Fragment {
         RecyclerView recyclerView = (RecyclerView)getView().findViewById(R.id.recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setAdapter(new VideoPreviewAdapter(getVideoPreviews()));
+        getView().findViewById(R.id.log_last_video).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AppUtils.logLastVideo();
+            }
+        });
     }
 
     private List<VideoPreview> getVideoPreviews() {
